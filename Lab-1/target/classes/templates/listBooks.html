@@ -1,0 +1,39 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Books Homepage - Welcome to My Book Store</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Book Store</h1>
+</header>
+<main>
+    <h2>Choose book:</h2>
+    <!-- Display radio buttons for each book,
+            the value should be the isbn
+            and the displayed text should be Title: <bookTitle>, Genre:<genre>, Year: <year> -->
+    <form action="/author" method="POST">
+        <div th:each="book : ${books}">
+            <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}" th:text="${book.getTitle()}"><br/>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+</main>
+
+<script>
+     if(document.querySelector('form').childElementCount > 6){
+         console.log('more than 6')
+        document.querySelector('form div').style.display = 'none';
+     }
+
+</script>
+
+</body>
+</html>
