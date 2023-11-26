@@ -1,0 +1,30 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Books Homepage - Welcome to My Book Store</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Book Store</h1>
+</header>
+<main>
+    <h2>Choose book:</h2>
+    <form action="/author" method="POST">
+        <div style="margin: 10px" th:each="book : ${books}">
+            <label th:text="${book.getBookStore().getName()}" th:value="${book.getBookStore().getId()}" ></label>
+            <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}" th:text="${book.getTitle()}"> <button>Edit</button> <button>Delete</button>
+            <br/>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+</main>
+
+</body>
+</html>
