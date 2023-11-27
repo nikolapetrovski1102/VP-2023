@@ -1,3 +1,4 @@
+
 package mk.finki.ukim.mk.lab1.service.impl;
 
 import mk.finki.ukim.mk.lab1.models.Author;
@@ -7,6 +8,7 @@ import mk.finki.ukim.mk.lab1.repository.BookRepository;
 import mk.finki.ukim.mk.lab1.service.AuthorService;
 import mk.finki.ukim.mk.lab1.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -32,10 +34,12 @@ public class BookServiceImpl implements AuthorService, BookService {
         return listAuthors().stream().filter(author -> author.getId().equals(id)).findFirst().orElse(null);
     }
 
+
     @Override
     public List<Book> listBooks() {
         return bookRepository.findAll();
     }
+
     @Override
     public Book findBookByIsbn(String isbn) {
         return listBooks().stream().filter(book -> book.getIsbn().equals(isbn)).findFirst().orElse(null);

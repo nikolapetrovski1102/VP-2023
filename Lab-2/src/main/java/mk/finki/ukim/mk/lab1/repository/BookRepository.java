@@ -4,6 +4,9 @@ import mk.finki.ukim.mk.lab1.models.Author;
 import mk.finki.ukim.mk.lab1.models.Book;
 import mk.finki.ukim.mk.lab1.models.BookStore;
 import mk.finki.ukim.mk.lab1.service.impl.BookStoreServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -16,17 +19,14 @@ public class BookRepository {
     private BookStoreServiceImpl bookStoreService;
 
     public BookRepository(List<Book> books, BookStoreServiceImpl bookStoreService) {
-        List<BookStore> bookStore = bookStoreService.findAll();
-        books.add(new Book("ISBN001", "The Great Adventure", "Adventure", 2005, bookStore.get(0)));
-        books.add(new Book("ISBN002", "Mystery of the Lost Key", "Mystery", 2010, bookStore.get(1)));
-        books.add(new Book("ISBN003", "Love in the Time of Rain", "Romance", 2018, bookStore.get(2)));
-        books.add(new Book("ISBN004", "Beyond the Horizon", "Science Fiction", 2022, bookStore.get(3)));
-        books.add(new Book("ISBN005", "History Revisited", "Historical Fiction", 2015, bookStore.get(4)));
+        this.bookStoreService = bookStoreService;
+        List<BookStore> bookStores = bookStoreService.findAll();
+        books.add(new Book("ISBN001", "The Great Adventure", "Adventure", 2005, bookStores.get(1).getId(), bookStores.get(1)));
+        books.add(new Book("ISBN002", "Mystery of the Lost Key", "Mystery", 2010, bookStores.get(2).getId(), bookStores.get(2)));
+        books.add(new Book("ISBN003", "Love in the Time of Rain", "Romance", 2018, bookStores.get(3).getId(), bookStores.get(3)));
+        books.add(new Book("ISBN004", "Beyond the Horizon", "Science Fiction", 2022, bookStores.get(0).getId(), bookStores.get(0)));
+        books.add(new Book("ISBN005", "History Revisited", "Historical Fiction", 2015, bookStores.get(4).getId(), bookStores.get(4)));
         this.books = books;
-    }
-
-    public BookRepository() {
-
     }
 
     public List<Book> findAll(){

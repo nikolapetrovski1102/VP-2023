@@ -17,13 +17,16 @@
     <h2>Choose book:</h2>
     <form action="/author" method="POST">
         <div style="margin: 10px" th:each="book : ${books}">
-            <label th:text="${book.getBookStore().getName()}" th:value="${book.getBookStore().getId()}" ></label>
-            <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}" th:text="${book.getTitle()}"> <button>Edit</button> <button>Delete</button>
+            <label style="font-weight: bold" th:text="${book.getBookStore().getName() + ' in ' + book.getBookStore().getCity()}" th:value="${book.getBookStore().getId()}" ></label> <br>
+            <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}" th:text="${book.getTitle()}"> <button> <a style="text-decoration: none; color: black" th:href="@{/books/edit/{id}(id=${book.getId()})}">Edit</a> </button> <button> <a style="text-decoration: none; color: black" th:href="@{/books/delete/{id}(id=${book.getId()})}"> Delete </a> </button>
             <br/>
         </div>
 
         <input type="submit" value="Submit">
     </form>
+
+    <a href="/books/add">Add new book</a>
+
 </main>
 
 </body>

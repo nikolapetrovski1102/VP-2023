@@ -13,11 +13,10 @@ public class BookStore {
     private String address;
     private List<Book> listBooks;
 
-    public BookStore(String name, String city, String address, List<Book> books) {
+    public BookStore(String name, String city, String address) {
         this.id = (long)(Math.random() * 1000);
         this.name = name;
         this.city = city;
         this.address = address;
-        this.listBooks = new ArrayList<>();
     }
 }

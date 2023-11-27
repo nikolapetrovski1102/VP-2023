@@ -14,13 +14,19 @@ public class Book {
     private String genre;
     private int year;
     private List<Author> authors = new ArrayList<>();
+    private Long bookStoreId;
     private BookStore bookStore;
-    public Book(String isbn, String title, String genre, int year, BookStore bookStore) {
+
+    public Book() {
+    }
+
+    public Book(String isbn, String title, String genre, int year, Long bookStoreId, BookStore bookStore) {
         this.id = (long) (Math.random() * 1000 );
         this.isbn = isbn;
         this.title = title;
         this.genre = genre;
         this.year = year;
+        this.bookStoreId = bookStoreId;
         this.bookStore = bookStore;
     }
 }
