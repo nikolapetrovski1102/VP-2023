@@ -36,7 +36,7 @@
     <form action="/bookDetails" method="POST">
         <div th:each="author : ${authors}" >
         <input type="hidden" name="bookIsbn" th:value="${bookIsbn}">
-            <input type="radio" name="authorId" th:text="${author.getName()} + ' ' + ${author.getSurname()}" th:value="${author.getId()}" ><br/>
+            <input type="radio" name="authorId" th:text="${author.getName()} + ' ' + ${author.getSurname()}" th:value="${author.getId()}" > <buton><a th:href="@{/author/copyBooks/{authorId}(authorId=${author.getId()})}" >Copy</a></buton> <br/>
         </div>
         <br/>
         <input type='submit' value='Add author'>

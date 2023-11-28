@@ -43,7 +43,7 @@ public class BookDetailsServlet extends HttpServlet {
 
         bookService.addAuthorToBook(Long.parseLong(authorId), bookIsbn);
 
-        System.out.println(book);
+        bookService.addBookToAuthor(bookIsbn, Long.parseLong(authorId));
 
         context.setVariable("detailsBook", book );
 

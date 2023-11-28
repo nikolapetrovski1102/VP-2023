@@ -61,4 +61,17 @@ public class BookServiceImpl implements AuthorService, BookService {
 
         return author;
     }
+
+    public Author addBookToAuthor(String ISBN, Long Id){
+        Book book = findBookByIsbn(ISBN);
+        Author author = findById(Id);
+
+        String bookTitle = book.getTitle();
+
+        book.setTitle("Copy of " + bookTitle);
+
+        author.getBookList().add(book);
+
+        return author;
+    }
 }

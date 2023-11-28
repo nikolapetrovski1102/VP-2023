@@ -12,8 +12,6 @@ public class AuthorRepository {
 
     List<Author> authors = new ArrayList<>();
 
-
-
     public AuthorRepository(List<Author> authors) {
         authors.add(new Author(1L, "Nikola", "Petrovski", "Some biography"));
         authors.add(new Author(2L, "Elena", "Ivanov", "A passionate writer with a love for storytelling."));

@@ -18,7 +18,7 @@
     <form action="/author" method="POST">
         <div style="margin: 10px" th:each="book : ${books}">
             <label style="font-weight: bold" th:text="${book.getBookStore().getName() + ' in ' + book.getBookStore().getCity()}" th:value="${book.getBookStore().getId()}" ></label> <br>
-            <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}" th:text="${book.getTitle()}"> <button> <a style="text-decoration: none; color: black" th:href="@{/books/edit/{id}(id=${book.getId()})}">Edit</a> </button> <button> <a style="text-decoration: none; color: black" th:href="@{/books/delete/{id}(id=${book.getId()})}"> Delete </a> </button>
+            <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}" th:text="${book.getTitle()}"> <button> <a style="text-decoration: none; color: black" 2>Edit</a> </button> <button> <a style="text-decoration: none; color: black" th:href="@{/books/delete/{id}(id=${book.getId()})}"> Delete </a> </button>
             <br/>
         </div>
 
