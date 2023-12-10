@@ -1,0 +1,22 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+</head>
+<body>
+<header>
+   <h1 th:text="${detailsBook.getTitle()}" ></h1>
+</header>
+<section>
+    <h2>Genre</h2>
+    <h2 th:text="${detailsBook.getGenre()}" ></h2>
+    <h2>Year</h2>
+    <h2 th:text="${detailsBook.getYear()}" ></h2>
+    <h2>Authors:</h2>
+    <ul th:each="author : ${detailsBook.getAuthors()}">
+        <li th:text="${author.getName()} + ' ' + ${author.getSurname()}"></li>
+    </ul>
+</section>
+
+<a href="/books">Select another book</a>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit book</title>
+</head>
+<body>
+
+    <form th:action="@{/books/edit}" th:object="${book}" method="POST">
+        <input type="hidden" th:field="*{Id}">
+        <div>
+            <label>Book ISBN: </label> <br>
+            <input type="text" th:field="*{isbn}" readonly>
+        </div>
+        <div>
+            <label>Book title: </label> <br>
+            <input type="text" th:field="*{title}">
+        </div>
+        <div>
+            <label>Book genre: </label> <br>
+            <input type="text" th:field="*{genre}">
+        </div>
+        <div>
+            <label>Book year: </label> <br>
+            <input type="text" th:field="*{year}">
+        </div>
+
+        <button type="submit">Edit book</button>
+    </form>
+
+</body>
+</html>

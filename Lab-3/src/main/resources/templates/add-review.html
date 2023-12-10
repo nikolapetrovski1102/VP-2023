@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add review</title>
+</head>
+<body>
+
+    <form th:action="@{/books/save-review}" th:object="${reviewForm}" method="POST">
+
+        <div>
+            <label>Book score: </label> <br>
+            <input type="number" th:field="*{score}" placeholder="Book score">
+        </div>
+        <div>
+            <label>Book description: </label> <br>
+            <textarea th:field="*{description}" placeholder="Book review description"> </textarea>
+        </div>
+        <div>
+            <label>Book time: </label> <br>
+            <input type="datetime-local" th:field="*{timestamp}" placeholder="Book review time" />
+        </div>
+
+        <p th:text="${bookFor}">
+
+        </p>
+
+        <input type="hidden" name="book.id" th:value="${bookFor}" />
+
+        <button type="submit" >Submit</button>
+    </form>
+
+</body>
+</html>

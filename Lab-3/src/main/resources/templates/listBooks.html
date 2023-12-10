@@ -1,0 +1,35 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Books Homepage - Welcome to My Book Store</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Book Store</h1>
+</header>
+<main>
+    <h2>Choose book:</h2>
+    <form action="/author" method="POST">
+        <div style="margin: 10px" th:each="book : ${books}">
+            <label style="font-weight: bold" th:text="${book.getBookStore().getName() + ' in ' + book.getBookStore().getCity()}" th:value="${book.getBookStore().getId()}" ></label> <br>
+            <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}" th:text="${book.getTitle()}"> <button> <a th:href="@{/books/edit/{bookId}(bookId=${book.getId()})}" style="text-decoration: none; color: black" 2>Edit</a> </button> <button> <a style="text-decoration: none; color: black" th:href="@{/books/delete/{id}(id=${book.getId()})}"> Delete </a> </button>
+            <a th:href="@{/books/add-review/{id}(id=${book.getId()})}" >add review</a>
+            <a th:href="@{/books/reviews/{id}(id=${book.getId()})}" >see reviews</a>
+            <br/>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <a href="/books/add">Add new book</a>
+
+</main>
+
+</body>
+</html>
