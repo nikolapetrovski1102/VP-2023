@@ -21,6 +21,8 @@ public class Author {
 
     private String name;
     private String surname;
+    @Convert(converter = AuthorFullnameConverter.class)
+    private AuthorFullname authorFullname;
     private String biography;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")

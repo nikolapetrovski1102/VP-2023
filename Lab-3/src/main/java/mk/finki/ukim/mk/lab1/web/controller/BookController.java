@@ -147,6 +147,7 @@ public class BookController {
 
         List<Review> reviewList = reviewService.sortByDateTime(timeFrom, timeTo, bookId);
 
+        model.addAttribute("bookModel", jpaBookRepository.findBookById(bookId));
         model.addAttribute("bookReviews", reviewList);
 
         int sumScore = 0;
@@ -155,7 +156,11 @@ public class BookController {
             sumScore += reviewList.get(i).getScore();
         }
 
-        float overallScore = sumScore / reviewList.size();
+        float overallScore = 0;
+
+        if (!reviewList.isEmpty()){
+            overallScore = sumScore / reviewList.size();
+        }
 
         model.addAttribute("overallScore", overallScore);
 

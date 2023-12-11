@@ -28,7 +28,7 @@ public class ReviewServiceImpl{
 
     public List<Review> sortByDateTime (LocalDateTime timeFrom, LocalDateTime timeTo, Long bookId){
 
-        return jpaReview.findAll().stream().filter(review -> review.getId().equals(bookId) && review.getTimestamp().isAfter(timeFrom) || review.getTimestamp().isBefore(timeTo)).toList();
+        return jpaReview.findAll().stream().filter(review -> review.getBook().getId().equals(bookId) && review.getTimestamp().isAfter(timeFrom) && review.getTimestamp().isBefore(timeTo)).toList();
     }
 
 }

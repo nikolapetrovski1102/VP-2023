@@ -6,6 +6,9 @@
 </head>
 <body>
 
+    <h1 th:text="'Review for ' + ${bookModel.getTitle()}" ></h1>
+
+    <div th:if="${!bookReviews.isEmpty()}">
     <form th:action="@{/books/sort-reviews/{id}(id=${bookReviews.get(0).getBook().getId()})}" method="GET">
         <label>From</label>
         <input name="timeFrom" type="datetime-local">
@@ -14,8 +17,6 @@
         <input type="hidden" name="bookId" th:value="${bookReviews.get(0).getBook().getId()}" >
         <button type="submit" >Submit</button>
     </form>
-
-    <h1 th:text="'Review for ' + ${bookReviews.getFirst().getBook().getTitle()}" ></h1>
 
     <div>
         <h4>Description</h4>
@@ -27,7 +28,11 @@
         <h4>Overall score</h4>
         <p th:text="${overallScore}"></p>
     </div>
+    </div>
+    <div th:unless="${bookReviews.isEmpty()}">
 
+        <p>No reviews for book</p>
+    </div>
     <a th:href="@{/books}" >Back to book list</a>
 
 </body>
