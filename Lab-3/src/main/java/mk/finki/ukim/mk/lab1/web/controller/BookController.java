@@ -107,6 +107,9 @@ public class BookController {
     public String bookReviews(@PathVariable Long id, Model model) {
         List<Review> review = jpaReview.getReviewByBook(id);
 
+        Book book = jpaBookRepository.findBookById(id);
+
+        model.addAttribute("bookModel", book);
         model.addAttribute("bookReviews", review);
         int sumScore = 0;
         for (int i = 0; i < review.size(); i++) {
@@ -167,5 +170,27 @@ public class BookController {
         return "review";
     }
 
+    @GetMapping("/books/search-description/{id}")
+    public String searchDescription (@PathVariable Long id ,@RequestParam("searchBy") String description, Model model){
 
+        List<Review> reviewList = reviewService.searchByDescription(description, id);
+
+        model.addAttribute("bookModel", jpaBookRepository.findBookById(id));
+        model.addAttribute("bookReviews", reviewList);
+        int sumScore = 0;
+
+        for (int i = 0; i < reviewList.size(); i++){
+            sumScore += reviewList.get(i).getScore();
+        }
+
+        float overallScore = 0;
+
+        if (!reviewList.isEmpty()){
+            overallScore = sumScore / reviewList.size();
+        }
+
+        model.addAttribute("overallScore", overallScore);
+
+        return "review";
+    }
 }

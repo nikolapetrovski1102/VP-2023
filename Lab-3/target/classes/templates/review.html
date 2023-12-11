@@ -19,6 +19,15 @@
     </form>
 
     <div>
+        <br>
+
+        <form method="GET" th:action="@{/books/search-description/{id}(id=${bookModel.getId()})}">
+            <label for="search-input">Search description</label>
+            <input id="search-input" name="searchBy">
+
+            <button type="submit">Submit</button>
+        </form>
+
         <h4>Description</h4>
         <p th:each="review : ${bookReviews}" th:text="${review.getDescription()}" ></p>
 
@@ -29,7 +38,7 @@
         <p th:text="${overallScore}"></p>
     </div>
     </div>
-    <div th:unless="${bookReviews.isEmpty()}">
+    <div th:if="${bookReviews.isEmpty()}">
 
         <p>No reviews for book</p>
     </div>

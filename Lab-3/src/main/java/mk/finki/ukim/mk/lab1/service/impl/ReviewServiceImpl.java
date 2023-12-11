@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 public class ReviewServiceImpl{
@@ -29,6 +30,11 @@ public class ReviewServiceImpl{
     public List<Review> sortByDateTime (LocalDateTime timeFrom, LocalDateTime timeTo, Long bookId){
 
         return jpaReview.findAll().stream().filter(review -> review.getBook().getId().equals(bookId) && review.getTimestamp().isAfter(timeFrom) && review.getTimestamp().isBefore(timeTo)).toList();
+    }
+
+    public List<Review> searchByDescription (String description, Long id){
+
+        return jpaReview.findAll().stream().filter(review -> review.getDescription().toLowerCase().contains(description.toLowerCase()) && review.getBook().getId().equals(id)).toList();
     }
 
 }
